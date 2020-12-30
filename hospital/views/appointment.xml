@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+      <record id="appointment_tree" model="ir.ui.view">
+            <field name="name">hospital.appintment.tree</field>
+            <field name="model">hospital.appintment</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="status_bar == 'draft'" decoration-muted="status_bar == 'confirm'"
+                  decoration-success="status_bar == 'complite'" decoration-danger="status_bar == 'cancel'">
+                    <field name="patient_name"/>
+                    <field name="date_of_bath"/>
+                    <field name="appointment_date" options='{"datepicker": {"daysOfWeekDisabled": [0,6]
+                    }}'/>
+                    <field name="note"/>
+                    <field name="seial"/>
+                    <field name="status_bar"/>
+                     <field name="age" avg="age_sum" groups="base.group_no_one"/>
+
+                </tree>
+            </field>
+      </record>
+     <record id="appointment_pivot" model="ir.ui.view">
+        <field name="name">hospital.appointment.pivot</field>
+        <field name="model">hospital.appintment</field>
+        <field name="arch" type="xml">
+            <pivot string="Appointment">
+                <field name="doctor_id" type="row"/>
+                <field name="appointment_date" type="col" interval="day"/>
+            </pivot>
+        </field>
+    </record>
+
+      <record id="appointment_calendar" model="ir.ui.view">
+        <field name="name">hospital.appointment.calendar</field>
+        <field name="model">hospital.appintment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointment Calendar" date_start="appointment_date" color="patient_name" mode="month" quick_add="True">
+                <field name="patient_name"/>
+                <field name="seial"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="appointment_graph" model="ir.ui.view">
+        <field name="name">hospital.appointment.graph</field>
+        <field name="model">hospital.appintment</field>
+        <field name="arch" type="xml">
+            <graph string="Appointment Graph" type="pie">
+                <field name="patient_name"/>
+                <field name="age" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+
+     <record id="appointment_form" model="ir.ui.view">
+            <field name="name">hospital.appintment.form</field>
+            <field name="model">hospital.appintment</field>
+            <field name="arch" type="xml">
+                <form string="patient">
+                    <header>
+                        <button name="appointment_pescribe_delete_o2o" type="object"  string="Delete" class ="oe_highlight"/>
+                        <button name="action_confirm" type="object" attrs="{'invisible':[('status_bar', '!=','draft')]}" string="Confirm" class ="oe_highlight"/>
+                        <button name="action_done" type="object" attrs="{'invisible':[('status_bar', '!=','confirm')]}"  string="done" class ="oe_highlight"/>
+                        <field name="status_bar" widget="statusbar"/>
+                    </header>
+                <sheet>
+                    <div class="oe_title">
+                            <h1>
+                                <field name="seial" readonly="1"/>
+                            </h1>
+                    </div>
+                    <group >
+                        <field name="patient_name"/>
+                        <field name="date_of_bath" />
+                        <field name="appointment_date" options='{"datepicker":{"daysOfWeekDisabled": [0,6]}
+                       }'/>
+                        <field name="note"/>
+                        <field name="age" groups="base.group_no_one"/>
+                        <field name="partner_id" />
+                        <field name="order_id" />
+                        <field name="appointment_time" />
+                        <field name="doctor_id" />
+
+
+                    </group>
+                    <notebook>
+                        <page string="appointment_note">
+                            <field name="appointment_line">
+                                <tree >
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="appointment_id" invisible ="1"/>
+                                </tree>
+                            </field>
+
+                        </page>
+                        <page string="ref">
+                            <field name="refarence"/>
+
+                        </page>
+                    </notebook>
+                </sheet>
+                    <div class="oe_chatter">
++                       <field name="message_follower_ids" widget="mail_followers"/>
++                       <field name="message_ids" widget="mail_thread"/>
+                        <field name = "activity_ids" widget ="mail_activity"/>
++                   </div>
+                </form>
+            </field>
+        </record>
+
+<!--      <record id="appointment_search" model="ir.ui.view">-->
+<!--            <field name="name">hospital.patient.search</field>-->
+<!--            <field name="model">hospital.patient</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="patient">-->
+
+<!--                    <field name="name" filter_domain = "['|',('name','ilike',self),('p_id','ilike',self)]"/>-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="p_id"/>-->
+<!--                    <separator/>-->
+<!--                    <filter string = "Male" name = "male" domain = "[('gender', '=','male')]"/>-->
+<!--                    <filter string = "Female" name = "female" domain = "[('gender', '=','female')]"/>-->
+<!--                    <group expand = "0" string = "Group By">-->
+<!--                        <filter string="Gender" name="gender" context = "{'group_by':'gender'}"/>-->
+<!--                    </group>-->
+
+<!--                </search>-->
+<!--            </field>-->
+<!--      </record>-->
+
+
+
+    <record id="action_appointment" model="ir.actions.act_window">
+            <field name="name">hospital</field>
+            <field name="type">ir.actions.act_window</field>
+
+            <field name="res_model">hospital.appintment</field>
+            <field name="view_mode">calendar,tree,form,graph,pivot</field>
+<!--            <field name="context">{"search_default_male":1}</field>-->
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                test option appointment
+              </p>
+            </field>
+        </record>
+
+</odoo>

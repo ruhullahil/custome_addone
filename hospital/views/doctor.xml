@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+      <record id="doctor_tree" model="ir.ui.view">
+            <field name="name">hospital.doctor.tree</field>
+            <field name="model">hospital.doctor</field>
+            <field name="arch" type="xml">
+                <tree string="doctor">
+
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <field name="patient_id"/>
+                    <field name="user_id"/>
+
+                </tree>
+            </field>
+      </record>
+
+
+     <record id="doctor_form" model="ir.ui.view">
+            <field name="name">hospital.doctor.form</field>
+            <field name="model">hospital.doctor</field>
+            <field name="arch" type="xml">
+                <form string="patient">
+                <sheet>
+<!--                    <div class="oe_button_box" name="button_box">-->
+<!--                        <button name="open_pation_appointment"  type="object" class="oe_stat_button" icon="fa-calendar">-->
+<!--                            <field name="appointment_count" string = " Appointments " widget="statinfo"/>-->
+<!--                        </button>-->
+<!--                        <button name="%(open_pation_action)d"  type="action" class="oe_stat_button" icon="fa-calendar">-->
+<!--                            <field name="appointment_count" string = " Appointments " widget="statinfo"/>-->
+<!--                        </button>-->
+<!--                        <button name="toggle_active"  type="object" class="oe_stat_button" icon="fa-archive">-->
+<!--                            <field name="active" string="Active" widget="boolean_button" options="{&quot;terminology&quot; : &quot;archive&quot;}"/>-->
+<!--                        </button>-->
+<!--                    </div>-->
+
+
+
+                    <group >
+
+                        <field name="name"/>
+                        <field name="gender"/>
+                        <field name="patient_id"/>
+                        <field name="user_id"/>
+                    </group>
+                </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--+                       <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--+                       <field name="message_ids" widget="mail_thread"/>-->
+<!--                        <field name = "activity_ids" widget ="mail_activity"/>-->
+<!--+                   </div>-->
+                </form>
+            </field>
+        </record>
+
+<!--      <record id="patient_search" model="ir.ui.view">-->
+<!--            <field name="name">hospital.patient.search</field>-->
+<!--            <field name="model">hospital.patient</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="patient">-->
+
+<!--                    <field name="name" filter_domain = "['|',('name','ilike',self),('p_id','ilike',self)]"/>-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="p_id"/>-->
+<!--                    <separator/>-->
+<!--                    <filter string = "Male" name = "male" domain = "[('gender', '=','male')]"/>-->
+<!--                    <filter string = "Female" name = "female" domain = "[('gender', '=','female')]"/>-->
+<!--                    <group expand = "0" string = "Group By">-->
+<!--                        <filter string="Gender" name="gender" context = "{'group_by':'gender'}"/>-->
+<!--                    </group>-->
+
+<!--                </search>-->
+<!--            </field>-->
+<!--      </record>-->
+
+
+
+    <record id="action_doctor" model="ir.actions.act_window">
+            <field name="name">doctor</field>
+            <field name="type">ir.actions.act_window</field>
+
+            <field name="res_model">hospital.doctor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                test option doctor
+              </p>
+            </field>
+        </record>
+
+
+
+</odoo>

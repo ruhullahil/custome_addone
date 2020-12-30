@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="open_pation_action" model="ir.actions.act_window">
+        <field name="name">Appoinment </field>
+        <field name="res_model">hospital.appintment</field>
+<!--        <field name="type">ir.actions.act_window</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('patient_name','=',active_id)]</field>
+        <field name="context"></field>
+    </record>
+</odoo>

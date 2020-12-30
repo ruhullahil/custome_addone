@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+     <record id="record_id" model="ir.actions.report">
+        <field name="name">test</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hospital.patient_card_id</field>
+    </record>
+
+    <report id ="report_patient_card"
+            string="report card"
+            model="hospital.patient"
+            report_type="qweb-pdf"
+            name="hospital.patient_card_id"
+            file="hospital.patient_card"/>
+
+    <report id ="report_patient_card_xlsx"
+            string="report card XlSX"
+            model="hospital.patient"
+            report_type="xlsx"
+            name="hospital.patient_card_id_xls"
+            file="hospital.patient_xls_report"/>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    <data>-->
+<!--        <record  id="res_config_settings" model="res.config.settings">-->
+<!--            <field name="group_product_variant" eval="1"/>-->
+<!--&lt;!&ndash;                        <value eval="{}"/>&ndash;&gt;-->
+<!--            <field name="default_picking_policy">default</field>-->
+<!--        </record>-->
+<!--        <function model="res.config.settings" name="execute">-->
+<!--            <value eval="[ref('res_config_settings')]"/>-->
+
+
+<!--        </function>-->
+
+
+<!--    </data>-->
+
+</odoo>
+

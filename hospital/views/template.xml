@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="doctor" name="Doctor">
+        <t t-call="website.layout">
+            <t t-foreach="doctor" t-as="doc">
+                <t t-esc="doc.name"/>
+                <br/>
+            </t>
+
+        </t>
+
+    </template>
+
+
+</odoo>

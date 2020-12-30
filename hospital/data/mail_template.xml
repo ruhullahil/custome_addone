@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Mail template are declared in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="patient_card_email_send" model="mail.template">
+            <field name="name">patient: Send by email</field>
+            <field name="model_id" ref="hospital.model_hospital_patient"/>
+            <field name="email_from">${(object.users_id.email_formatted) |safe}</field>
+            <field name="email_to">${object.email}</field>
+            <field name="subject">${object.name} Report (Ref ${object.p_id or 'n/a'})</field>
+            <field name="body_html" type="html">
+                 <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.name}
+
+                        <br /><br />
+                        Here is your
+                        % if object.name:
+                            info <strong>${object.name}</strong>
+                        % else:
+                            info
+                        %endif
+
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="report_patient_card"/>
+            <field name="report_name">Invoice_${(object.p_id)}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>
